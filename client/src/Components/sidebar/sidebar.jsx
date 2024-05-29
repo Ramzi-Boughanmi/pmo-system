@@ -34,7 +34,7 @@ import { closeSidebar } from "./utils";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoards } from "../../Services/boardsService";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function Toggler({ defaultExpanded = false, renderToggle, children }) {
@@ -70,7 +70,7 @@ export default function Sidebar() {
   const info = useSelector((state) => state.user.userInfo);
 
   console.log(boardsData, "this is boards data");
-
+  const navigate = useNavigate();
   const [selectedItemId, setSelectedItemId] = React.useState(null);
 
   const handleItemClick = (id) => {
@@ -85,7 +85,7 @@ export default function Sidebar() {
     sx={{
       position: { xs: "fixed", md: "fixed" },
       transform: {
-        xs: "translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1)))",
+        xs: "none",
         md: "none",
       },
       transition: "transform 0.4s, width 0.4s",
@@ -228,7 +228,11 @@ export default function Sidebar() {
                           loading="lazy"
                          style={{width:30,borderRadius:"100px"}}
                         />
-                        <ListItemButton>{item.title}</ListItemButton>
+                       
+                        <ListItemButton  onClick={() => {
+										
+										navigate('/board/' + item._id);
+									}}>{item.title}</ListItemButton>
                       </ListItem>
                     );
                   })}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Background from "../../Background";
+
 import { register } from "../../../Services/userService";
 import { useDispatch, useSelector } from "react-redux";
 import sprintgo from "../../../Images/3.svg"

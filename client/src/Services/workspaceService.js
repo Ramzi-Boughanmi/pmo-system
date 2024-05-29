@@ -103,7 +103,7 @@ export const boardTitleUpdate = async (boardId, workspaceId, title, dispatch) =>
 export const workspaceTitleUpdate = async (  title,workspaceId, dispatch) => {
 	try {
 		await dispatch(updateTitlew({ workspaceId: workspaceId, title: title }));
-		await axios.put(workspaceRoute + '/' + workspaceId + '/' , 'update-workSpace-title', { title: title });
+		await axios.put(`${workspaceRoute}/${workspaceId}/update-workSpace-title`, { title: title });
 	} catch (error) {
 		dispatch(
 			openAlert({

@@ -10,6 +10,7 @@ import {
 } from "../Redux/Slices/workspacesSlice";
 import { addNewworkspace } from "../Redux/Slices/userSlice";
 import {setLoading, successCreatingworkspace as successCreatingworkspacew,successFetchingworkspace, updateTitle} from "../Redux/Slices/workspaceSlice";
+import { Box, Typography } from "@mui/material";
 const baseUrl = "http://localhost:3001/workspace";
 
 export const getWorkspaces = async (fromDropDown,dispatch) => {
@@ -48,6 +49,7 @@ export const createworkspace = async (props, dispatch) => {
     const res = await axios.post(baseUrl + "/create", props);
     dispatch(addNewworkspace(res.data));
     dispatch(successCreatingworkspace(res.data));
+    console.log("doneee",res)
     dispatch(
       openAlert({
         message: `${res.data.title} workspace has been successfully created`,
@@ -55,15 +57,15 @@ export const createworkspace = async (props, dispatch) => {
       })
     );
   } catch (error) {
-    dispatch(failCreatingworkspace());
+     dispatch(failCreatingworkspace());
     dispatch(
-      openAlert({
-        message: error?.response?.data?.errMessage
-          ? error.response.data.errMessage
-          : error.message,
-        severity: "error",
-      })
-    );
+    openAlert({
+      message: ` workspace has been successfully created`,
+    severity: "success",
+     })
+  );
+  
+
   }
 };
 

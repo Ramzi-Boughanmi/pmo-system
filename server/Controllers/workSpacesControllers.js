@@ -55,7 +55,7 @@ const updateworkSpaceTitle = async (req, res) => {
 	const { workSpaceId } = req.params;
 	const { title } = req.body;
 	// Call the service
-	await workSpaceService.updateworkSpaceTitle(workSpaceId, title, req.user, (err, result) => {
+	await workSpaceService.updateWorkSpaceTitle(workSpaceId, title, req.user, (err, result) => {
 		if (err) return res.status(400).send(err);
 		return res.status(200).send(result);
 	});

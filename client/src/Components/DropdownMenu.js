@@ -7,15 +7,15 @@ import DownIcon from '@mui/icons-material/KeyboardArrowDown';
 import styledComponent from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { getBoards } from '../Services/boardsService';
+
 import CardLoadingSvg from '../Images/cardLoading.svg';
 import { getWorkspaces } from '../Services/workSpacesService';
 
 const BootstrapButton = styled(Button)({
 	boxShadow: 'none',
 	textTransform: 'none',
-	gap: '0.25rem',
-	padding: '0.25rem 0.5rem',
+	gap: '0.10rem',
+	padding: '0.25rem 0.01rem',
 	color: 'white',
 	backgroundColor: 'transparent',
 	border: 'none',
@@ -42,7 +42,7 @@ const LoadingBox = styledComponent.div`
 `;
 
 const Span = styledComponent.span`
-font-size: 0.85rem;
+font-size: 0.9rem;
 display:block;
 `;
 
@@ -61,7 +61,7 @@ export default function DropdownMenu(props) {
 	const handleClick = async (event) => {
 		setAnchorEl(event.currentTarget);
 		setLoading(true);
-		await getBoards(true,dispatch);
+		await getWorkspaces(true,dispatch);
 		setLoading(false);
 	};
 

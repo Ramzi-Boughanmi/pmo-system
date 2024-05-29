@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../Services/userService";
-import Background from "../../Background";
+
 import sprintgo from "../../../Images/3.svg"
 
 import {

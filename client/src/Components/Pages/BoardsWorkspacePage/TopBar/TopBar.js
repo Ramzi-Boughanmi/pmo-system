@@ -26,7 +26,7 @@ const TopBar = () => {
 			setCurrentTitle(workspace.title);
 	},[workspace.loading, workspace.title]);
 	const handleTitleChange = () => {
-		workspaceTitleUpdate(currentTitle,workspace.id,dispatch);
+		workspaceTitleUpdate(currentTitle,id,dispatch);
 	};
 	const navigate = useNavigate();
 	const handleDeleteworkspace = () => {
@@ -68,10 +68,7 @@ const TopBar = () => {
 			<style.RightWrapper>
 			<Button onClick={handleDeleteworkspace} variant="contained" color="error">Delete Workspace</Button>
 
-				<common.Button onClick={()=>{setShowDrawer(true)}}>
-					<MoreHorizIcon />
-					<style.TextSpan>Show menu</style.TextSpan>
-				</common.Button>
+				
 			</style.RightWrapper>
 			<RightDrawer show={showDrawer} closeCallback={()=>{setShowDrawer(false)}} />
 		</style.TopBar>
