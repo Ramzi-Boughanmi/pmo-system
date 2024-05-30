@@ -42,6 +42,13 @@ const BoardsW = () => {
   };
   const [openModal, setOpenModal] = useState(false);
 
+
+  const userInfo = useSelector((state) => state.user.userInfo);
+	const boardsData = useSelector((state) => state.boards.boardsData)
+	const isOwner = boardsData.some(board => {
+		return board.members.some(member => member.user === userInfo._id && member.role === 'owner');
+	  });
+
   return (
     <>
       {pending && <LoadingScreen />}
@@ -51,7 +58,7 @@ const BoardsW = () => {
         <Navbar  searchString={searchString} setSearchString={setSearchString} />
       
         <Wrapper>
-        <Topbar />
+        {isOwner && <Topbar /> }
           <Title>Your Boards</Title>
           
         

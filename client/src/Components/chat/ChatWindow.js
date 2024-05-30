@@ -61,9 +61,9 @@ const MessageBubble = ({ message, isSender }) => {
           backgroundColor: isSender ? 'primary.light' : 'grey.300',
         }}
       >
-        <Avatar sx={{ marginRight: isSender ? 0 : 1, marginLeft: isSender ? 1 : 0 }}>
+        {/* <Avatar sx={{ marginRight: isSender ? 0 : 1, marginLeft: isSender ? 1 : 0 }}>
           {message.senderId[0]}
-        </Avatar>
+        </Avatar> */}
         <Box>
           <Typography variant="body2">{message.text}</Typography>
           <Typography variant="caption" color="textSecondary">{message.senderId}</Typography>

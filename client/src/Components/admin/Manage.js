@@ -124,7 +124,7 @@ const ManageUsers = () => {
         setShowUpdateDialog(false);
         setSuccessMessage('User has been updated successfully');
         setShowSuccessSnackbar(true);
-        setStatus({ type: 'success', message: 'User updated successfully' });
+        
       } catch (error) {
         console.error('Error updating user:', error);
         setStatus({ type: 'error', message: 'Failed to update user' });
@@ -229,6 +229,7 @@ const ManageUsers = () => {
         open={showSuccessSnackbar}
         autoHideDuration={3000}
         onClose={() => setShowSuccessSnackbar(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} // Center the Snackbar
       >
         <Alert onClose={() => setShowSuccessSnackbar(false)} severity="success">
           {successMessage}

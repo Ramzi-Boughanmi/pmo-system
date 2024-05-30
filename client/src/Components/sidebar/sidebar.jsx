@@ -35,11 +35,14 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoards } from "../../Services/boardsService";
 import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../Redux/Slices/userSlice';
+import { reset } from '../../Redux/Slices/boardsSlice';
 
 
 function Toggler({ defaultExpanded = false, renderToggle, children }) {
   const [open, setOpen] = React.useState(defaultExpanded);
-
+  
+ 
   return (
     <>
       {renderToggle({ open, setOpen })}
@@ -70,8 +73,26 @@ export default function Sidebar() {
   const info = useSelector((state) => state.user.userInfo);
 
   console.log(boardsData, "this is boards data");
+ 
   const navigate = useNavigate();
   const [selectedItemId, setSelectedItemId] = React.useState(null);
+  
+  if (Array.isArray(boardsData)) {
+    boardsData.forEach((board, index) => {
+      console.log(`Board ${index} members: `, board.members);
+      board.members.forEach(member => {
+        console.log(`Member: ${member.name}, Role: ${member.role}`);
+      });
+    });
+  } else {
+    console.error("boardsData is not an array or is undefined");
+  }
+
+  const handleLogout = () => {
+    dispatch(reset());
+    dispatch(logout());
+    navigate('/'); // Redirect to the landing page
+  };
 
   const handleItemClick = (id) => {
     setSelectedItemId(id);
@@ -324,7 +345,7 @@ export default function Sidebar() {
           <Typography level="body-xs">{email}</Typography>
         </Box>
         <IconButton size="sm" variant="plain" color="neutral">
-          <LogoutRoundedIcon />
+          <LogoutRoundedIcon  onClick={handleLogout} />
         </IconButton>
       </Box>
     </Sheet>
